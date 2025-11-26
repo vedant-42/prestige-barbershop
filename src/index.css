@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-black text-white;
+    overflow-x: hidden;
+  }
+}
+
+@layer components {
+  .smooth-scroll {
+    scroll-behavior: smooth;
+  }
+
+  .prestige-title {
+    font-family: 'Cinzel', serif;
+    color: white;
+    text-shadow:
+      -2px -2px 0 #000,
+      2px -2px 0 #000,
+      -2px 2px 0 #000,
+      2px 2px 0 #000,
+      0 0 20px rgba(212, 175, 55, 0.5),
+      0 0 40px rgba(212, 175, 55, 0.3);
+    letter-spacing: 0.15em;
+  }
+
+  .prestige-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    color: white;
+    text-shadow:
+      -1px -1px 0 #000,
+      1px -1px 0 #000,
+      -1px 1px 0 #000,
+      1px 1px 0 #000,
+      0 0 15px rgba(212, 175, 55, 0.4);
+    letter-spacing: 0.2em;
+  }
+}

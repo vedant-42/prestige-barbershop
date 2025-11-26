@@ -6,70 +6,72 @@ interface SmokeOverlayProps {
 
 export default function SmokeOverlay({ onComplete }: SmokeOverlayProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const particlesRef = useRef<Particle[]>([]);
   const animationIdRef = useRef<number>();
-  const startTimeRef = useRef<number>(Date.now());
+  const particlesRef = useRef<SmokeParticle[]>([]);
+  const textureRef = useRef<ImageBitmap | null>(null);
 
-  class Particle {
+  class SmokeParticle {
     x: number;
     y: number;
+    size: number;
+    rotation: number;
+    rotationSpeed: number;
     vx: number;
     vy: number;
-    radius: number;
     opacity: number;
     life: number;
     maxLife: number;
-    turbulence: number;
-    baseOpacity: number;
+    scaleGrowth: number;
 
-    constructor(x: number, y: number, vx: number, vy: number) {
-      this.x = x;
-      this.y = y;
-      this.vx = vx;
-      this.vy = vy;
-      this.radius = Math.random() * 100 + 80;
-      this.baseOpacity = Math.random() * 0.5 + 0.4;
-      this.opacity = this.baseOpacity;
+    constructor(width: number, height: number) {
+      // Start everywhere to cover the screen
+      this.x = Math.random() * width;
+      this.y = Math.random() * height;
+
+      // VERY Large particles to ensure coverage
+      this.size = Math.random() * 400 + 600;
+
+      this.rotation = Math.random() * Math.PI * 2;
+      this.rotationSpeed = (Math.random() - 0.5) * 0.001;
+
+      // Slow drift
+      this.vx = (Math.random() - 0.5) * 0.2;
+      this.vy = (Math.random() - 0.5) * 0.2;
+
+      this.opacity = 0;
       this.life = 0;
-      this.maxLife = Math.random() * 40 + 80;
-      this.turbulence = Math.random() * 0.03 + 0.01;
+      // Reduced by ~15% (was 300 + random*100)
+      this.maxLife = 255 + Math.random() * 85;
+      this.scaleGrowth = 1.0005;
     }
 
-    update(elapsed: number) {
-      this.life += 1;
-      const progress = this.life / this.maxLife;
-
-      this.vx *= 0.99;
-      this.vy *= 0.99;
-      this.vy -= 0.08;
-
-      this.vx += (Math.sin(elapsed * this.turbulence + this.x * 0.01) - 0.5) * 0.15;
-
+    update() {
       this.x += this.vx;
       this.y += this.vy;
+      this.rotation += this.rotationSpeed;
+      this.size *= this.scaleGrowth;
+      this.life++;
 
-      this.opacity = this.baseOpacity * (1 - progress * 1.2);
-      this.radius *= 1.012;
+      // Fade in phase (very fast to cover screen immediately)
+      if (this.life < 10) {
+        this.opacity = Math.min(1, this.life / 10);
+      }
+      // Fade out phase (scaled down from 150)
+      else if (this.life > this.maxLife - 128) {
+        this.opacity = Math.max(0, (this.maxLife - this.life) / 128);
+      }
     }
 
-    isDead(): boolean {
-      return this.life >= this.maxLife || this.opacity <= 0.01;
-    }
+    draw(ctx: CanvasRenderingContext2D, texture: ImageBitmap) {
+      if (this.opacity <= 0) return;
 
-    draw(ctx: CanvasRenderingContext2D) {
-      const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius);
-
-      const baseColor = 160;
-      const currentColor = Math.floor(baseColor + (this.opacity * 50));
-
-      gradient.addColorStop(0, `rgba(${currentColor}, ${currentColor}, ${currentColor}, ${this.opacity * 0.9})`);
-      gradient.addColorStop(0.4, `rgba(${currentColor - 20}, ${currentColor - 20}, ${currentColor - 20}, ${this.opacity * 0.6})`);
-      gradient.addColorStop(1, `rgba(${currentColor - 40}, ${currentColor - 40}, ${currentColor - 40}, 0)`);
-
-      ctx.fillStyle = gradient;
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-      ctx.fill();
+      ctx.save();
+      ctx.translate(this.x, this.y);
+      ctx.rotate(this.rotation);
+      ctx.globalAlpha = this.opacity;
+      // Draw centered
+      ctx.drawImage(texture, -this.size / 2, -this.size / 2, this.size, this.size);
+      ctx.restore();
     }
   }
 
@@ -80,6 +82,47 @@ export default function SmokeOverlay({ onComplete }: SmokeOverlayProps) {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
+    // Load and process texture
+    const img = new Image();
+    img.src = '/full_smoke_texture.png';
+
+    img.onload = async () => {
+      // Create an offscreen canvas to process the image
+      const offscreen = new OffscreenCanvas(img.width, img.height);
+      const offCtx = offscreen.getContext('2d');
+      if (!offCtx) return;
+
+      // 1. Draw the full smoke texture
+      offCtx.drawImage(img, 0, 0);
+
+      // 2. Apply Radial Mask to make it round
+      // 'destination-in' keeps the existing content (smoke) only where the new shape (gradient) overlaps
+      offCtx.globalCompositeOperation = 'destination-in';
+
+      const centerX = img.width / 2;
+      const centerY = img.height / 2;
+      const radius = Math.min(centerX, centerY);
+
+      const gradient = offCtx.createRadialGradient(centerX, centerY, 0, centerX, centerY, radius);
+      gradient.addColorStop(0, 'rgba(0, 0, 0, 1)');   // Center: Fully visible
+      gradient.addColorStop(0.7, 'rgba(0, 0, 0, 1)'); // Keep center opaque
+      gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');   // Edge: Transparent
+
+      offCtx.fillStyle = gradient;
+      offCtx.beginPath();
+      offCtx.arc(centerX, centerY, radius, 0, Math.PI * 2);
+      offCtx.fill();
+
+      // Reset composite operation
+      offCtx.globalCompositeOperation = 'source-over';
+
+      // Create bitmap for performance
+      textureRef.current = await createImageBitmap(offscreen);
+
+      initParticles();
+      animate();
+    };
+
     const setCanvasSize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
@@ -88,60 +131,42 @@ export default function SmokeOverlay({ onComplete }: SmokeOverlayProps) {
     setCanvasSize();
     window.addEventListener('resize', setCanvasSize);
 
-    const emitSmoke = (elapsed: number) => {
-      const centerX = canvas.width / 2;
-      const centerY = canvas.height / 2;
+    const initParticles = () => {
+      particlesRef.current = [];
+      // High density to ensure full coverage
+      const area = canvas.width * canvas.height;
+      const count = Math.min(150, Math.max(60, Math.floor(area / 15000)));
 
-      let emissionRate = 25;
-      if (elapsed > 2000) {
-        emissionRate = Math.max(2, 25 - ((elapsed - 2000) / 300) * 25);
-      }
-
-      for (let i = 0; i < emissionRate; i++) {
-        const angle = Math.random() * Math.PI * 2;
-        const speed = Math.random() * 1.2 + 0.8;
-        const vx = Math.cos(angle) * speed;
-        const vy = Math.sin(angle) * speed - 0.5;
-
-        const offsetDistance = Math.random() * 200 + 50;
-        const offsetAngle = Math.random() * Math.PI * 2;
-        const startX = centerX + Math.cos(offsetAngle) * offsetDistance;
-        const startY = centerY + Math.sin(offsetAngle) * offsetDistance;
-
-        particlesRef.current.push(new Particle(startX, startY, vx, vy));
+      for (let i = 0; i < count; i++) {
+        particlesRef.current.push(new SmokeParticle(canvas.width, canvas.height));
       }
     };
 
     const animate = () => {
-      const elapsed = Date.now() - startTimeRef.current;
-      const progress = Math.min(1, elapsed / 3000);
+      if (!textureRef.current) return;
 
-      ctx.fillStyle = 'rgba(0, 0, 0, 1)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      if (elapsed < 2800) {
-        emitSmoke(elapsed);
-      }
+      let activeParticles = 0;
 
-      particlesRef.current.forEach((particle) => {
-        particle.update(elapsed);
-        particle.draw(ctx);
+      // Draw particles
+      // We use 'source-over' (default) which blends them nicely
+      particlesRef.current.forEach((p: SmokeParticle) => {
+        p.update();
+        if (p.opacity > 0) {
+          p.draw(ctx, textureRef.current!);
+          activeParticles++;
+        }
       });
 
-      particlesRef.current = particlesRef.current.filter((p) => !p.isDead());
-
-      const baseOverlay = Math.max(0, 1 - progress);
-      ctx.fillStyle = `rgba(0, 0, 0, ${baseOverlay * 0.3})`;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      if (progress < 1) {
-        animationIdRef.current = requestAnimationFrame(animate);
-      } else {
+      // If all particles are gone, we are done
+      if (activeParticles === 0) {
         onComplete();
+        return;
       }
-    };
 
-    animationIdRef.current = requestAnimationFrame(animate);
+      animationIdRef.current = requestAnimationFrame(animate);
+    };
 
     return () => {
       window.removeEventListener('resize', setCanvasSize);

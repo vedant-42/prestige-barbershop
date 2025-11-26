@@ -8,17 +8,14 @@ function App() {
   const [contentReady, setContentReady] = useState(false);
 
   useEffect(() => {
-    const hasSeenAnimation = sessionStorage.getItem('prestigeAnimationSeen');
-    if (hasSeenAnimation) {
-      setShowSmoke(false);
-      setContentReady(true);
-    }
+    // Animation now plays on every load
+    setShowSmoke(true);
+    setContentReady(false);
   }, []);
 
   const handleSmokeComplete = () => {
     setShowSmoke(false);
     setContentReady(true);
-    sessionStorage.setItem('prestigeAnimationSeen', 'true');
   };
 
   return (

@@ -57,7 +57,7 @@ export default function PortfolioPage() {
                 </div>
 
                 <Link
-                    to="/"
+                    to="/#services"
                     className="absolute top-8 left-8 flex items-center gap-2 text-white/80 hover:text-[#d4af37] transition-colors duration-300 z-10"
                 >
                     <ArrowLeft size={20} />
@@ -90,7 +90,7 @@ export default function PortfolioPage() {
 
                     {/* Gallery Grid */}
                     <div className="lg:col-span-2">
-                        <h2 className="text-2xl font-bold text-white mb-6 font-serif border-b border-white/10 pb-4">
+                        <h2 className="text-2xl font-bold text-white mb-6 font-serif border-b border-white/10 pb-4 text-center">
                             Portfolio Gallery
                         </h2>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

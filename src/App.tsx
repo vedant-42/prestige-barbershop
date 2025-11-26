@@ -7,14 +7,32 @@ import PortfolioPage from './pages/PortfolioPage';
 import { AboutSection, ContactSection, BookingSection } from './components/PlaceholderSections';
 
 function ScrollToTop() {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
+
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+    if (!hash) {
+      window.scrollTo(0, 0);
+    }
+  }, [pathname, hash]);
+
   return null;
 }
 
 function HomePage({ contentReady }: { contentReady: boolean }) {
+  const { hash } = useLocation();
+
+  useEffect(() => {
+    if (contentReady && hash) {
+      // Small timeout to ensure DOM is fully painted
+      setTimeout(() => {
+        const element = document.getElementById(hash.replace('#', ''));
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    }
+  }, [contentReady, hash]);
+
   return (
     <>
       {contentReady && (

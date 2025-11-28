@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Home, ChevronDown } from 'lucide-react';
+import { Home, ChevronDown, Menu, X } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 
 const services = [
@@ -12,6 +12,7 @@ const services = [
 
 export default function Navbar() {
     const [showPortfolioDropdown, setShowPortfolioDropdown] = useState(false);
+    const [showMobileMenu, setShowMobileMenu] = useState(false);
     const navigate = useNavigate();
 
     const scrollToSection = (sectionId: string) => {
@@ -38,9 +39,9 @@ export default function Navbar() {
     return (
         <nav className="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-md border-b border-[#d4af37]/20">
             <div className="max-w-7xl mx-auto px-4 md:px-8">
-                <div className="grid grid-cols-[auto_1fr_auto] items-center h-20 gap-4">
+                <div className="relative flex items-center justify-between h-20">
                     {/* Left: Home Icon */}
-                    <div className="flex justify-start">
+                    <div className="flex items-center z-10">
                         <button
                             onClick={handleHomeClick}
                             className="text-[#d4af37] hover:text-white transition-colors p-2 hover:bg-white/5 rounded"
@@ -50,15 +51,15 @@ export default function Navbar() {
                         </button>
                     </div>
 
-                    {/* Center: Brand Name */}
-                    <div className="flex justify-center">
-                        <h1 className="text-lg md:text-xl font-bold font-serif tracking-wider text-white">
+                    {/* Center: Brand Name - Absolutely positioned for perfect centering */}
+                    <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+                        <h1 className="text-lg md:text-xl font-bold font-serif tracking-wider text-white whitespace-nowrap">
                             PRESTIGE <span className="text-[#d4af37]">BARBERSHOP</span>
                         </h1>
                     </div>
 
-                    {/* Right: Navigation Buttons */}
-                    <div className="flex items-center justify-end gap-2 md:gap-4">
+                    {/* Right: Desktop Navigation (hidden on mobile/tablet) */}
+                    <div className="hidden lg:flex items-center gap-4 z-10">
                         <button
                             onClick={() => scrollToSection('services')}
                             className="px-3 md:px-4 py-2 text-sm font-medium text-gray-300 hover:text-[#d4af37] transition-colors uppercase tracking-wide"
@@ -98,8 +99,62 @@ export default function Navbar() {
                             )}
                         </div>
                     </div>
+
+                    {/* Hamburger Menu (visible on mobile/tablet) */}
+                    <div className="lg:hidden flex items-center z-10">
+                        <button
+                            onClick={() => setShowMobileMenu(!showMobileMenu)}
+                            className="text-[#d4af37] hover:text-white transition-colors p-2 hover:bg-white/5 rounded"
+                            aria-label="Menu"
+                        >
+                            {showMobileMenu ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                        </button>
+                    </div>
                 </div>
+
+                {/* Mobile Menu Dropdown */}
+                {showMobileMenu && (
+                    <div className="lg:hidden border-t border-[#d4af37]/20 bg-black/95 backdrop-blur-md">
+                        <div className="py-2">
+                            <button
+                                onClick={() => {
+                                    scrollToSection('services');
+                                    setShowMobileMenu(false);
+                                }}
+                                className="block w-full text-left px-4 py-3 text-sm font-medium text-gray-300 hover:text-[#d4af37] hover:bg-white/5 transition-colors uppercase tracking-wide"
+                            >
+                                Services
+                            </button>
+                            <button
+                                onClick={() => {
+                                    scrollToSection('team');
+                                    setShowMobileMenu(false);
+                                }}
+                                className="block w-full text-left px-4 py-3 text-sm font-medium text-gray-300 hover:text-[#d4af37] hover:bg-white/5 transition-colors uppercase tracking-wide"
+                            >
+                                Team
+                            </button>
+
+                            {/* Portfolio Section in Mobile */}
+                            <div className="border-t border-[#d4af37]/10 mt-2 pt-2">
+                                <div className="px-4 py-2 text-xs font-semibold text-[#d4af37] uppercase tracking-wider">
+                                    Portfolio
+                                </div>
+                                {services.map((service) => (
+                                    <Link
+                                        key={service.id}
+                                        to={`/portfolio/${service.id}`}
+                                        onClick={() => setShowMobileMenu(false)}
+                                        className="block px-4 py-3 pl-8 text-sm text-gray-300 hover:text-[#d4af37] hover:bg-white/5 transition-colors"
+                                    >
+                                        {service.title}
+                                    </Link>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                )}
             </div>
-        </nav>
+        </nav >
     );
 }

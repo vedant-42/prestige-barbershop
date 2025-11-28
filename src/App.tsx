@@ -43,7 +43,14 @@ function HomePage({ contentReady }: { contentReady: boolean }) {
       setTimeout(() => {
         const element = document.getElementById(hash.replace('#', ''));
         if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
+          const navbarHeight = 80;
+          const elementPosition = element.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.scrollY - navbarHeight;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
         }
       }, 100);
     }

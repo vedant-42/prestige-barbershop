@@ -1,5 +1,107 @@
 import { motion } from 'framer-motion';
-import { User } from 'lucide-react';
+import { User, Scissors } from 'lucide-react';
+import { useEffect, useRef, useMemo } from 'react';
+
+// Custom Icons
+const StraightRazor = ({ className }: { className?: string }) => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+        <path d="M22 20l-7-13-2 1 6 13z" /> {/* Handle */}
+        <path d="M13 8L3 3l2-1 9 5" /> {/* Blade */}
+    </svg>
+);
+
+const ElectricTrimmer = ({ className }: { className?: string }) => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+        <rect x="7" y="9" width="10" height="13" rx="2" />
+        <path d="M7 9V5h10v4" />
+        <path d="M9 5V3" />
+        <path d="M12 5V3" />
+        <path d="M15 5V3" />
+    </svg>
+);
+
+const icons = [Scissors, StraightRazor, ElectricTrimmer];
+
+function TeamBackground() {
+    const containerRef = useRef<HTMLDivElement>(null);
+
+    // Generate static random data for icons to avoid re-renders
+    const iconData = useMemo(() => {
+        const columns = 6;
+        const rows = 4;
+        const cellWidth = 100 / columns;
+        const cellHeight = 100 / rows;
+        const items = [];
+
+        for (let i = 0; i < columns * rows; i++) {
+            const col = i % columns;
+            const row = Math.floor(i / columns);
+
+            // Randomly select an icon for better variation
+            const Icon = icons[Math.floor(Math.random() * icons.length)];
+
+            // Random offset within the cell (keeping 10% padding from edges)
+            const offsetX = Math.random() * (cellWidth * 0.6) + (cellWidth * 0.2);
+            const offsetY = Math.random() * (cellHeight * 0.6) + (cellHeight * 0.2);
+
+            items.push({
+                id: i,
+                Icon,
+                top: (row * cellHeight) + offsetY,
+                left: (col * cellWidth) + offsetX,
+                size: 32 + Math.random() * 24, // 32px - 56px
+                speed: 0.2 + Math.random() * 0.8,
+                direction: Math.random() > 0.5 ? 1 : -1,
+                rotation: Math.random() * 360,
+            });
+        }
+        return items;
+    }, []);
+
+    useEffect(() => {
+        let rafId: number;
+
+        const handleScroll = () => {
+            if (containerRef.current) {
+                // Update CSS variable for scroll position
+                containerRef.current.style.setProperty('--scrollY', `${window.scrollY}`);
+            }
+            rafId = requestAnimationFrame(handleScroll);
+        };
+
+        // Start loop
+        rafId = requestAnimationFrame(handleScroll);
+
+        return () => cancelAnimationFrame(rafId);
+    }, []);
+
+    return (
+        <div
+            ref={containerRef}
+            className="absolute inset-0 overflow-hidden pointer-events-none z-0"
+            style={{ '--scrollY': '0' } as React.CSSProperties}
+        >
+            {iconData.map((item, index) => (
+                <div
+                    key={item.id}
+                    // Using text-gray-400 for slightly darker visibility
+                    // Hidden on mobile for every other item to reduce clutter
+                    className={`absolute text-gray-400 will-change-transform ${index % 2 !== 0 ? 'hidden md:block' : ''}`}
+                    style={{
+                        top: `${item.top}%`,
+                        left: `${item.left}%`,
+                        width: item.size,
+                        height: item.size,
+                        // Rotation logic: Initial rotation + (ScrollY * Speed * Direction)
+                        transform: `rotate(calc(${item.rotation}deg + (var(--scrollY) * ${item.speed} * ${item.direction} * 0.5deg)))`,
+                    } as React.CSSProperties}
+                >
+                    <item.Icon className="w-full h-full" />
+                </div>
+            ))}
+        </div>
+    );
+}
 
 const team = [
     {
@@ -28,7 +130,8 @@ const team = [
 export default function TeamSection() {
     return (
         <section className="relative py-24 px-4 md:px-8 bg-white text-black overflow-hidden">
-            <div className="max-w-7xl mx-auto">
+            <TeamBackground />
+            <div className="max-w-7xl mx-auto relative z-10">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}

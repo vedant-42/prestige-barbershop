@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import SmokeOverlay from './components/SmokeOverlay';
 import HeroSection from './components/HeroSection';
 import ServicesSection from './components/ServicesSection';
@@ -14,6 +14,20 @@ function ScrollToTop() {
       window.scrollTo(0, 0);
     }
   }, [pathname, hash]);
+
+  return null;
+}
+
+// Component to clean hash on initial load to ensure we start at Hero
+function InitialHashCleaner() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      navigate(location.pathname, { replace: true });
+    }
+  }, []); // Run only once on mount
 
   return null;
 }
@@ -49,14 +63,11 @@ function HomePage({ contentReady }: { contentReady: boolean }) {
 }
 
 function App() {
-  const [showSmoke, setShowSmoke] = useState(true);
-  const [contentReady, setContentReady] = useState(false);
+  // Only show smoke animation if we are at the root path
+  const isRoot = window.location.pathname === '/';
 
-  // Smoke animation logic - runs once on mount
-  useEffect(() => {
-    setShowSmoke(true);
-    setContentReady(false);
-  }, []);
+  const [showSmoke, setShowSmoke] = useState(isRoot);
+  const [contentReady, setContentReady] = useState(!isRoot);
 
   const handleSmokeComplete = () => {
     setShowSmoke(false);
@@ -65,6 +76,7 @@ function App() {
 
   return (
     <Router>
+      <InitialHashCleaner />
       <ScrollToTop />
       <div className="bg-black min-h-screen">
         {showSmoke && <SmokeOverlay onComplete={handleSmokeComplete} />}

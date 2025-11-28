@@ -14,7 +14,7 @@ const portfolioData: Record<string, { title: string; description: string }> = {
     },
     'kids-haircut': {
         title: 'Kids Haircut',
-        description: 'Patient and professional service for the young gentlemen. We ensure a comfortable experience and a stylish cut for kids 12 and under.',
+        description: 'Patient and professional service for the young gentlemen. We ensure the most comfortable experience and a stylish cut for kids 12 and under.',
     },
     'lineup': {
         title: 'Lineup',
@@ -50,10 +50,12 @@ export default function PortfolioPage() {
                 </div>
 
                 <div className="absolute inset-0 flex flex-col items-center justify-center px-4">
-                    <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 prestige-title tracking-widest text-center">
-                        {service.title.toUpperCase()}
-                    </h1>
-                    <div className="w-24 h-1 bg-[#d4af37] rounded-full" />
+                    <div className="flex flex-col items-center w-fit max-w-full">
+                        <h1 className="text-4xl md:text-6xl font-bold text-white mb-2 prestige-title tracking-widest text-center">
+                            {service.title.toUpperCase()}
+                        </h1>
+                        <div className="w-full h-1 bg-[#d4af37] rounded-full" />
+                    </div>
                 </div>
 
                 <Link
@@ -91,7 +93,7 @@ export default function PortfolioPage() {
                     {/* Gallery Grid */}
                     <div className="lg:col-span-2">
                         <h2 className="text-2xl font-bold text-white mb-6 font-serif border-b border-white/10 pb-4 text-center">
-                            Portfolio Gallery
+                            Portfolio
                         </h2>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             {/* Placeholders for Gallery Images */}

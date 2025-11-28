@@ -198,7 +198,7 @@ export default function TeamSection() {
                                 className="inline-block px-8 py-3 text-sm font-bold tracking-[0.2em] text-white uppercase transition-all duration-300 bg-gradient-to-r from-amber-600 to-amber-500 rounded-full shadow-[0_0_15px_rgba(245,158,11,0.4)] border border-amber-400/30"
                                 style={{ fontFamily: "'Cinzel', serif" }}
                             >
-                                Book a Cut
+                                View Portfolio
                             </motion.a>
                         </motion.div>
                     ))}

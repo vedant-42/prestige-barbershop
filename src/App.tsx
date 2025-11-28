@@ -5,7 +5,7 @@ import HeroSection from './components/HeroSection';
 import ServicesSection from './components/ServicesSection';
 import PortfolioPage from './pages/PortfolioPage';
 import TeamSection from './components/TeamSection';
-import { AboutSection, ContactSection, BookingSection } from './components/PlaceholderSections';
+import { ContactSection, BookingSection } from './components/PlaceholderSections';
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
@@ -18,6 +18,7 @@ function ScrollToTop() {
 
   return null;
 }
+
 // Component to clean hash on initial load to ensure we start at Hero
 function InitialHashCleaner() {
   const navigate = useNavigate();
@@ -54,7 +55,6 @@ function HomePage({ contentReady }: { contentReady: boolean }) {
           <HeroSection />
           <ServicesSection />
           <TeamSection />
-          <AboutSection />
           <ContactSection />
           <BookingSection />
         </main>

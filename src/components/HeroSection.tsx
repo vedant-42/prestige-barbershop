@@ -50,7 +50,7 @@ export default function HeroSection() {
           </h2>
 
           <motion.a
-            href="https://booksy.com/en-us/144068_deefades_barber-shop_22262_everett#ba_s=sh_1"
+            href="https://booksy.com/en-us/1309419_prestige-barbershop_barber-shop_22262_everett#ba_s=seo"
             target="_blank"
             rel="noopener noreferrer"
             initial={{ opacity: 0, y: 20 }}

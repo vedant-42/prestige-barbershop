@@ -87,7 +87,7 @@ export default function FooterSection() {
             <div className="bg-black border-t border-[#d4af37]/20">
                 <div className="max-w-7xl mx-auto px-4 md:px-8 py-6 flex flex-col items-center gap-4">
                     <p className="text-gray-300 text-sm font-light tracking-wide text-center">
-                        &copy; {new Date().getFullYear()} Prestige Barbershop. All Rights Reserved.
+                        &copy; {new Date().getFullYear()} Prestige Barbershop LLC. All Rights Reserved.
                     </p>
 
                     <div className="flex items-center gap-6">

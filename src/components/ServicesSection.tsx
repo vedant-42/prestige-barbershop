@@ -134,7 +134,7 @@ function ResponsiveHexagonPattern() {
 
 export default function ServicesSection() {
     return (
-        <section id="services" className="relative py-24 px-4 md:px-8 bg-[#111] overflow-hidden">
+        <section id="services" className="relative py-24 px-4 md:px-8 bg-[#0a0a0a] overflow-hidden scroll-mt-20">
             <ResponsiveHexagonPattern />
 
             {/* Decorative Divider */}

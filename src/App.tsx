@@ -6,6 +6,7 @@ import ServicesSection from './components/ServicesSection';
 import PortfolioPage from './pages/PortfolioPage';
 import TeamSection from './components/TeamSection';
 import FooterSection from './components/FooterSection';
+import Navbar from './components/Navbar';
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
@@ -78,7 +79,8 @@ function App() {
     <Router>
       <InitialHashCleaner />
       <ScrollToTop />
-      <div className="bg-black min-h-screen">
+      <Navbar />
+      <div className="bg-black min-h-screen pt-20">
         {showSmoke && <SmokeOverlay onComplete={handleSmokeComplete} />}
 
         <Routes>

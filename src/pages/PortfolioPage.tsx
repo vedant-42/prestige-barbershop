@@ -27,7 +27,12 @@ const portfolioData: Record<string, { title: string; description: string; images
     'kids-haircut': {
         title: 'Kids Haircut',
         description: 'Patient and professional service for the young gentlemen. We ensure the most comfortable experience and a stylish cut for kids 12 and under.',
-        images: [],
+        images: [
+            '/portfolio/kids-haircut/kids-haircut-1.jpg',
+            '/portfolio/kids-haircut/kids-haircut-2.jpg',
+            '/portfolio/kids-haircut/kids-haircut-3.jpg',
+            '/portfolio/kids-haircut/kids-haircut-4.jpg',
+        ],
     },
     'lineup': {
         title: 'Lineup',

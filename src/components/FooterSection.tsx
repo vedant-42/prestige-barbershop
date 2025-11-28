@@ -56,9 +56,12 @@ export default function FooterSection() {
                             rel="noopener noreferrer"
                             animate={{ scale: [1, 1.05, 1] }}
                             transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                            whileHover={{ scale: 1.05 }}
+                            whileHover={{
+                                scale: 1.05,
+                                boxShadow: "0 0 25px rgba(245, 158, 11, 0.6)"
+                            }}
                             whileTap={{ scale: 0.95 }}
-                            className="w-full md:w-auto min-w-[250px] px-8 py-4 bg-[#d4af37] text-black font-bold text-lg uppercase tracking-widest text-center rounded-sm hover:bg-white transition-colors duration-300 shadow-[0_0_20px_rgba(212,175,55,0.3)]"
+                            className="w-full md:w-auto min-w-[250px] px-8 py-4 bg-gradient-to-r from-amber-600 to-amber-500 text-white font-bold text-lg uppercase tracking-widest text-center rounded-full shadow-[0_0_15px_rgba(245,158,11,0.4)] border border-amber-400/30 transition-all duration-300"
                         >
                             Book a Cut Now
                         </motion.a>

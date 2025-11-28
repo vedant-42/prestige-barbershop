@@ -189,6 +189,8 @@ export default function TeamSection() {
                                 href={member.bookingUrl}
                                 target="_blank"
                                 rel="noopener noreferrer"
+                                animate={{ scale: [1, 1.05, 1] }}
+                                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                                 whileHover={{
                                     scale: 1.05,
                                     boxShadow: "0 0 25px rgba(245, 158, 11, 0.6)",

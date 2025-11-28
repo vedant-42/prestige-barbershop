@@ -57,7 +57,12 @@ export default function HeroSection() {
             animate={{
               opacity: 1,
               y: 0,
-              transition: { duration: 0.8, delay: 2.2, ease: 'easeOut' }
+              scale: [1, 1.05, 1],
+              transition: {
+                opacity: { duration: 0.8, delay: 2.2, ease: 'easeOut' },
+                y: { duration: 0.8, delay: 2.2, ease: 'easeOut' },
+                scale: { duration: 3, delay: 3, repeat: Infinity, ease: 'easeInOut' }
+              }
             }}
             whileHover={{
               scale: 1.05,

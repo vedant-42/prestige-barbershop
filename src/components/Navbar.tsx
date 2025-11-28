@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Home, ChevronDown, Menu, X } from 'lucide-react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 const services = [
     { id: 'haircut', title: 'Haircut' },
@@ -14,8 +14,16 @@ export default function Navbar() {
     const [showPortfolioDropdown, setShowPortfolioDropdown] = useState(false);
     const [showMobileMenu, setShowMobileMenu] = useState(false);
     const navigate = useNavigate();
+    const location = useLocation();
 
     const scrollToSection = (sectionId: string) => {
+        // If not on home page, navigate to home with hash
+        if (location.pathname !== '/') {
+            navigate(`/#${sectionId}`);
+            return;
+        }
+
+        // If on home page, scroll to section
         const element = document.getElementById(sectionId);
         if (element) {
             const navbarHeight = 80;

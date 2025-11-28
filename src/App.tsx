@@ -4,6 +4,7 @@ import SmokeOverlay from './components/SmokeOverlay';
 import HeroSection from './components/HeroSection';
 import ServicesSection from './components/ServicesSection';
 import PortfolioPage from './pages/PortfolioPage';
+import TeamSection from './components/TeamSection';
 import { AboutSection, ContactSection, BookingSection } from './components/PlaceholderSections';
 
 function ScrollToTop() {
@@ -17,7 +18,6 @@ function ScrollToTop() {
 
   return null;
 }
-
 // Component to clean hash on initial load to ensure we start at Hero
 function InitialHashCleaner() {
   const navigate = useNavigate();
@@ -53,6 +53,7 @@ function HomePage({ contentReady }: { contentReady: boolean }) {
         <main className="smooth-scroll">
           <HeroSection />
           <ServicesSection />
+          <TeamSection />
           <AboutSection />
           <ContactSection />
           <BookingSection />

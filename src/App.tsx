@@ -4,7 +4,8 @@ import SmokeOverlay from './components/SmokeOverlay';
 import HeroSection from './components/HeroSection';
 import ServicesSection from './components/ServicesSection';
 import PortfolioPage from './pages/PortfolioPage';
-import { AboutSection, ContactSection, BookingSection } from './components/PlaceholderSections';
+import TeamSection from './components/TeamSection';
+import { ContactSection, BookingSection } from './components/PlaceholderSections';
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
@@ -53,7 +54,7 @@ function HomePage({ contentReady }: { contentReady: boolean }) {
         <main className="smooth-scroll">
           <HeroSection />
           <ServicesSection />
-          <AboutSection />
+          <TeamSection />
           <ContactSection />
           <BookingSection />
         </main>

@@ -5,7 +5,7 @@ import HeroSection from './components/HeroSection';
 import ServicesSection from './components/ServicesSection';
 import PortfolioPage from './pages/PortfolioPage';
 import TeamSection from './components/TeamSection';
-import { ContactSection, BookingSection } from './components/PlaceholderSections';
+import FooterSection from './components/FooterSection';
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
@@ -55,8 +55,7 @@ function HomePage({ contentReady }: { contentReady: boolean }) {
           <HeroSection />
           <ServicesSection />
           <TeamSection />
-          <ContactSection />
-          <BookingSection />
+          <FooterSection />
         </main>
       )}
     </>

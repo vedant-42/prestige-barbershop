@@ -115,7 +115,7 @@ const team = [
         id: 'rafa',
         name: 'Rafa',
         role: 'Master Barber',
-        image: null, // Placeholder
+        image: '/team/rafa.jpg',
         bookingUrl: 'https://booksy.com/en-us/1185083_rafa-the-barber_barber-shop_22262_everett'
     },
     {

@@ -57,7 +57,7 @@ function ResponsiveHexagonPattern() {
     });
 
     // Parallax effect
-    const y = useTransform(scrollYProgress, [0, 1], [-150, 150]);
+    const y = useTransform(scrollYProgress, [0, 1], [-200, 200]);
 
     return (
         <div ref={ref} className="absolute inset-0 z-0 overflow-hidden pointer-events-none">

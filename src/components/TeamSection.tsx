@@ -193,11 +193,11 @@ export default function TeamSection() {
                                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                                 whileHover={{
                                     scale: 1.05,
-                                    boxShadow: "0 0 25px rgba(245, 158, 11, 0.6)",
+                                    boxShadow: "0 0 25px rgba(212, 175, 55, 0.6)",
                                     transition: { duration: 0.1 }
                                 }}
                                 whileTap={{ scale: 0.95 }}
-                                className="inline-block px-8 py-3 text-sm font-bold tracking-[0.2em] text-white uppercase transition-all duration-300 bg-gradient-to-r from-amber-600 to-amber-500 rounded-full shadow-[0_0_15px_rgba(245,158,11,0.4)] border border-amber-400/30"
+                                className="inline-block px-8 py-3 text-sm font-bold tracking-[0.2em] text-white uppercase transition-all duration-300 bg-gradient-to-r from-[#D4AF37] to-[#B4941F] rounded-full shadow-[0_0_15px_rgba(212,175,55,0.5)] border border-[#D4AF37]/30"
                                 style={{ fontFamily: "'Cinzel', serif" }}
                             >
                                 View Portfolio

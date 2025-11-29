@@ -113,7 +113,7 @@ export default function PortfolioPage() {
                             href="https://booksy.com/en-us/144068_deefades_barber-shop_22262_everett#ba_s=sh_1"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-3 px-8 py-4 bg-[#d4af37] text-black font-bold uppercase tracking-widest hover:bg-white transition-colors duration-300 rounded-sm w-full justify-center"
+                            className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-[#D4AF37] to-[#B4941F] text-white font-bold uppercase tracking-widest hover:scale-105 transition-all duration-300 rounded-full w-full justify-center shadow-[0_0_15px_rgba(212,175,55,0.5)] border border-[#D4AF37]/30"
                         >
                             <Calendar size={20} />
                             Book This Service

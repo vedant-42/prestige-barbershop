@@ -135,7 +135,7 @@ export default function SmokeOverlay({ onComplete }: SmokeOverlayProps) {
       particlesRef.current = [];
       // High density to ensure full coverage
       const area = canvas.width * canvas.height;
-      const count = Math.min(150, Math.max(60, Math.floor(area / 15000)));
+      const count = Math.min(150, Math.max(30, Math.floor(area / 20000)));
 
       for (let i = 0; i < count; i++) {
         particlesRef.current.push(new SmokeParticle(canvas.width, canvas.height));

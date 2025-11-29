@@ -38,12 +38,8 @@ export default function FooterSection() {
                         </h3>
                         <ul className="space-y-3 text-gray-300 font-light tracking-wide">
                             <li className="flex flex-col">
-                                <span className="font-medium text-white">Mon - Sat</span>
-                                <span>8:00 AM - 8:00 PM</span>
-                            </li>
-                            <li className="flex flex-col pt-2">
-                                <span className="font-medium text-white">Sunday</span>
-                                <span className="text-[#d4af37]">Closed</span>
+                                <span className="font-medium text-white">Monday - Sunday</span>
+                                <span>9:00 AM - 7:00 PM</span>
                             </li>
                         </ul>
                     </div>

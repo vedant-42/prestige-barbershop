@@ -7,7 +7,7 @@ const services = [
     {
         id: 'haircut',
         title: 'Haircut',
-        price: '$40',
+        price: '$35',
         icon: Scissors,
         description: 'Precision cut tailored to your style.',
         image: '/services/haircut-icon.png'
@@ -15,7 +15,7 @@ const services = [
     {
         id: 'haircut-beard',
         title: 'Haircut & Beard',
-        price: '$50',
+        price: '$45',
         icon: Sparkles, // Using Sparkles as a placeholder for combo
         description: 'Complete grooming package.',
         image: '/services/haircut-beard-icon.png'
@@ -23,7 +23,7 @@ const services = [
     {
         id: 'kids-haircut',
         title: 'Kids Haircut',
-        price: '$30',
+        price: '$25',
         icon: User,
         description: 'Style for the young ones.',
         image: '/services/kids-haircut-icon.png'

@@ -41,7 +41,7 @@ def make_transparent(path):
         # Check if seed is already processed in mask (bit 1 set)
         if processed_mask[seed[1]+1, seed[0]+1] == 0:
             # Use FLOODFILL_MASK_ONLY
-            cv2.floodFill(img_bgr, processed_mask, seed, (0,0,0), loDiff, upDiff, cv2.FLOODFILL_MASK_ONLY | (255 << 8))
+            cv2.floodFill(img_bgr, processed_mask, seed, (0,0,0), loDiff, upDiff, cv2.FLOODFILL_MASK_ONLY | cv2.FLOODFILL_FIXED_RANGE | (255 << 8))
             
     # Now processed_mask has 255 where the background is.
     final_mask = processed_mask[1:-1, 1:-1]
@@ -49,6 +49,37 @@ def make_transparent(path):
     # Set alpha to 0 where mask is 255
     img[final_mask == 255, 3] = 0
     
+    # --- CLEANUP STEP: Remove disconnected artifacts (stars, marks) ---
+    # Get the alpha channel
+    alpha = img[:, :, 3]
+    
+    # Create a binary mask of visible pixels
+    _, binary = cv2.threshold(alpha, 10, 255, cv2.THRESH_BINARY)
+    
+    # Find connected components
+    num_labels, labels, stats, centroids = cv2.connectedComponentsWithStats(binary, connectivity=8)
+    
+    # If we have more than 1 component (background is 0, so at least 2 labels means 1 object + background)
+    if num_labels > 2:
+        print(f"  Found {num_labels - 1} connected components. Keeping only the largest.")
+        
+        # Find the largest component index (ignoring label 0 which is background)
+        # stats columns: [left, top, width, height, area]
+        largest_label = 1
+        max_area = 0
+        
+        for i in range(1, num_labels):
+            if stats[i, cv2.CC_STAT_AREA] > max_area:
+                max_area = stats[i, cv2.CC_STAT_AREA]
+                largest_label = i
+        
+        # Create a mask for the largest component
+        component_mask = (labels == largest_label).astype(np.uint8) * 255
+        
+        # Apply mask to alpha channel: keep only the largest component
+        # We use bitwise_and to keep the original alpha values where the mask is valid
+        img[:, :, 3] = cv2.bitwise_and(alpha, component_mask)
+        
     # Save
     cv2.imwrite(path, img)
     print(f"Saved {path}")

@@ -128,7 +128,7 @@ export default function ServicesSection() {
                                     <img
                                         src={service.image}
                                         alt={service.title}
-                                        className="absolute inset-0 w-full h-full object-cover"
+                                        className="absolute inset-0 w-full h-full object-contain p-4"
                                     />
                                     {/* Dark Overlay for text contrast if needed, or just style */}
                                     <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-300" />

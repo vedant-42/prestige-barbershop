@@ -107,14 +107,14 @@ const team = [
     {
         id: 'deefades',
         name: 'DeeFades',
-        role: 'Master Barber',
+        role: 'Master Barber | Owner',
         image: '/team/deefades.png',
         bookingUrl: 'https://booksy.com/en-us/144068_deefades_barber-shop_22262_everett#ba_s=sh_1'
     },
     {
         id: 'rafa',
         name: 'Rafa',
-        role: 'Master Barber',
+        role: 'Master Barber | Owner',
         image: '/team/rafa.jpg',
         bookingUrl: 'https://booksy.com/en-us/1185083_rafa-the-barber_barber-shop_22262_everett'
     },
@@ -124,6 +124,13 @@ const team = [
         role: 'Master Barber',
         image: '/team/clos.png',
         bookingUrl: 'https://booksy.com/en-us/537133_c-los-da-barber_barber-shop_22262_everett'
+    },
+    {
+        id: 'lians',
+        name: 'Lians',
+        role: 'Master Barber',
+        image: '/team/lians.jpg',
+        bookingUrl: 'https://app.thecut.co/barbers/dacutzplugguzz'
     }
 ];
 
@@ -200,7 +207,7 @@ export default function TeamSection() {
                                 className="inline-block px-8 py-3 text-sm font-bold tracking-[0.2em] text-white uppercase transition-all duration-300 bg-gradient-to-r from-[#D4AF37] to-[#B4941F] rounded-full shadow-[0_0_15px_rgba(212,175,55,0.5)] border border-[#D4AF37]/30"
                                 style={{ fontFamily: "'Cinzel', serif" }}
                             >
-                                View Portfolio
+                                Book with {member.name}
                             </motion.a>
                         </motion.div>
                     ))}

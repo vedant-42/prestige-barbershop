@@ -43,7 +43,7 @@ export default function HeroSection() {
             initial={{ width: 0 }}
             animate={{ width: '100%' }}
             transition={{ duration: 1, delay: 1.5, ease: 'easeInOut' }}
-            className="h-0.5 bg-gradient-to-r from-transparent via-amber-500 to-transparent my-4 md:my-6 w-full"
+            className="h-0.5 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent my-4 md:my-6 w-full"
           />
           <h2 className="text-3xl md:text-5xl lg:text-6xl font-light tracking-widest prestige-subtitle mb-12">
             BARBERSHOP
@@ -66,11 +66,11 @@ export default function HeroSection() {
             }}
             whileHover={{
               scale: 1.05,
-              boxShadow: "0 0 25px rgba(245, 158, 11, 0.6)",
+              boxShadow: "0 0 25px rgba(212, 175, 55, 0.6)",
               transition: { duration: 0.1, delay: 0 } // Instant reaction
             }}
             whileTap={{ scale: 0.95 }}
-            className="inline-block px-6 py-3 md:px-10 md:py-4 mt-6 md:mt-8 text-sm md:text-xl font-bold tracking-[0.2em] text-white uppercase transition-all duration-300 bg-gradient-to-r from-amber-600 to-amber-500 rounded-full shadow-[0_0_15px_rgba(245,158,11,0.4)] border border-amber-400/30 backdrop-blur-sm"
+            className="inline-block px-6 py-3 md:px-10 md:py-4 mt-6 md:mt-8 text-sm md:text-xl font-bold tracking-[0.2em] text-white uppercase transition-all duration-300 bg-gradient-to-r from-[#D4AF37] to-[#B4941F] rounded-full shadow-[0_0_15px_rgba(212,175,55,0.5)] border border-[#D4AF37]/30 backdrop-blur-sm"
             style={{ fontFamily: "'Cinzel', serif" }}
           >
             Book a Cut Now

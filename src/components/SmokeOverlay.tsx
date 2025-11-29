@@ -40,8 +40,7 @@ export default function SmokeOverlay({ onComplete }: SmokeOverlayProps) {
 
       this.opacity = 0;
       this.life = 0;
-      // Reduced by ~15% (was 300 + random*100)
-      this.maxLife = 255 + Math.random() * 85;
+      this.maxLife = 120 + Math.random() * 60;
       this.scaleGrowth = 1.0005;
     }
 
@@ -56,9 +55,8 @@ export default function SmokeOverlay({ onComplete }: SmokeOverlayProps) {
       if (this.life < 10) {
         this.opacity = Math.min(1, this.life / 10);
       }
-      // Fade out phase (scaled down from 150)
-      else if (this.life > this.maxLife - 128) {
-        this.opacity = Math.max(0, (this.maxLife - this.life) / 128);
+      else if (this.life > this.maxLife - 60) {
+        this.opacity = Math.max(0, (this.maxLife - this.life) / 60);
       }
     }
 

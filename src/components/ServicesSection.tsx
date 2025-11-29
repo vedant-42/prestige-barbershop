@@ -121,10 +121,10 @@ export default function ServicesSection() {
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.5, delay: index * 0.1 }}
                                 whileHover={{ y: -10 }}
-                                className="group relative h-[550px] sm:h-[400px] bg-[#1a1a1a] border border-white/20 hover:border-[#d4af37] transition-colors duration-300 overflow-hidden rounded-sm shadow-[0_0_15px_rgba(255,255,255,0.05)] hover:shadow-[#d4af37]/20"
+                                className="group relative h-[400px] bg-[#1a1a1a] border border-white/20 hover:border-[#d4af37] transition-colors duration-300 overflow-hidden rounded-sm shadow-[0_0_15px_rgba(255,255,255,0.05)] hover:shadow-[#d4af37]/20"
                             >
                                 {/* Image Area */}
-                                <div className="h-[75%] sm:h-[65%] relative overflow-hidden group-hover:scale-105 transition-transform duration-500">
+                                <div className="h-[65%] relative overflow-hidden group-hover:scale-105 transition-transform duration-500">
                                     <img
                                         src={service.image}
                                         alt={service.title}

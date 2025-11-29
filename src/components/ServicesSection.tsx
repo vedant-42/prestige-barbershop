@@ -10,7 +10,7 @@ const services = [
         price: '$40',
         icon: Scissors,
         description: 'Precision cut tailored to your style.',
-        image: '/services/haircut.jpg'
+        image: '/services/haircut-icon.png'
     },
     {
         id: 'haircut-beard',
@@ -18,7 +18,7 @@ const services = [
         price: '$50',
         icon: Sparkles, // Using Sparkles as a placeholder for combo
         description: 'Complete grooming package.',
-        image: '/services/haircut-beard.jpg'
+        image: '/services/haircut-beard-icon.png'
     },
     {
         id: 'kids-haircut',
@@ -26,7 +26,7 @@ const services = [
         price: '$30',
         icon: User,
         description: 'Style for the young ones.',
-        image: '/services/kids-haircut.jpg'
+        image: '/services/kids-haircut-icon.png'
     },
     {
         id: 'lineup',
@@ -34,7 +34,7 @@ const services = [
         price: '$20',
         icon: PenTool, // Placeholder for straight razor
         description: 'Sharp, clean edges.',
-        image: '/services/lineup.jpg'
+        image: '/services/lineup-icon.png'
     },
     {
         id: 'lineup-beard',
@@ -42,54 +42,11 @@ const services = [
         price: '$30',
         icon: PenTool,
         description: 'Detailed beard sculpting.',
-        image: '/services/lineup-beard.jpg'
+        image: '/services/lineup-beard-icon.png'
     },
 ];
 
-function HexagonPattern() {
-    const { scrollYProgress } = useScroll();
-    const y = useTransform(scrollYProgress, [0, 1], ['0%', '20%']);
 
-    return (
-        <motion.div
-            style={{ y }}
-            className="absolute inset-0 z-0 overflow-hidden pointer-events-none"
-        >
-            <svg className="w-full h-[120%] opacity-5 md:opacity-7" width="100%" height="100%">
-                <defs>
-                    <pattern id="hexagons" width="60" height="104" patternUnits="userSpaceOnUse" patternTransform="scale(1) rotate(0)">
-                        {/* Responsive scaling via CSS/JS is tricky in patternTransform, so we use a fixed base and scale the container or use media queries to swap patterns if needed. 
-                            However, user asked for 60px mobile -> 100px desktop. 
-                            We can use a viewBox or just let the pattern repeat. 
-                            To achieve responsive sizing, we can use a mask or just simple CSS scaling on the SVG, but that scales stroke too.
-                            Better approach: Define the path for a single hexagon tile.
-                        */}
-                        <path d="M30 0 L60 17.32 L60 51.96 L30 69.28 L0 51.96 L0 17.32 Z" fill="none" stroke="#d4af37" strokeWidth="1" />
-                        {/* We need a seamless tile. A single hex doesn't tile rectangularly easily without offset.
-                            Standard hex grid tile:
-                            Width: sqrt(3) * size
-                            Height: 2 * size (or 1.5 * size for spacing)
-                        */}
-                    </pattern>
-                    {/* Let's use a simpler path that tiles perfectly. 
-                        A common technique for hex grids in SVG patterns:
-                    */}
-                    <pattern id="hex-grid" width="100" height="174" patternUnits="userSpaceOnUse" patternTransform="scale(0.6)">
-                        <path d="M50 0 L100 29 L100 87 L50 116 L0 87 L0 29 Z" fill="none" stroke="#d4af37" strokeWidth="2" />
-                        <path d="M50 116 L50 174" fill="none" stroke="#d4af37" strokeWidth="2" />
-                        <path d="M0 87 L-50 116" fill="none" stroke="#d4af37" strokeWidth="2" />
-                        <path d="M100 87 L150 116" fill="none" stroke="#d4af37" strokeWidth="2" />
-                    </pattern>
-                </defs>
-                {/* We will use a rect to fill, and use media queries to change the scale if possible, 
-                    or just use a responsive scale in the patternTransform if we make it a state.
-                    For simplicity and performance, let's use a fixed scale that looks good, or two patterns.
-                */}
-                <rect width="100%" height="100%" fill="url(#hex-grid)" />
-            </svg>
-        </motion.div>
-    );
-}
 
 // Improved Responsive Hexagon Pattern
 function ResponsiveHexagonPattern() {
@@ -134,11 +91,8 @@ function ResponsiveHexagonPattern() {
 
 export default function ServicesSection() {
     return (
-        <section id="services" className="relative py-24 px-4 md:px-8 bg-[#0a0a0a] overflow-hidden scroll-mt-20">
+        <section id="services" className="relative py-24 px-4 md:px-8 bg-[#0a0a0a] overflow-hidden scroll-mt-20 border-t-2 border-[#d4af37]">
             <ResponsiveHexagonPattern />
-
-            {/* Decorative Divider */}
-            <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-30 z-10" />
 
             <div className="max-w-7xl mx-auto relative z-10">
                 <motion.div

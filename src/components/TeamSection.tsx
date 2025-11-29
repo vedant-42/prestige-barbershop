@@ -129,7 +129,7 @@ const team = [
 
 export default function TeamSection() {
     return (
-        <section id="team" className="relative py-24 px-4 md:px-8 bg-white text-black overflow-hidden scroll-mt-20">
+        <section id="team" className="relative py-24 px-4 md:px-8 bg-white text-black overflow-hidden scroll-mt-20 border-t-2 border-[#d4af37]">
             <TeamBackground />
             <div className="max-w-7xl mx-auto relative z-10">
                 <motion.div

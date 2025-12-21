@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate, Navigate } from 'react-router-dom';
 import SmokeOverlay from './components/SmokeOverlay';
 import HeroSection from './components/HeroSection';
 import ServicesSection from './components/ServicesSection';
@@ -92,7 +92,8 @@ function App() {
 
         <Routes>
           <Route path="/" element={<HomePage contentReady={contentReady} />} />
-          <Route path="/portfolio/:id" element={<PortfolioPage />} />
+          <Route path="/portfolio" element={<PortfolioPage />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </div>
     </Router>

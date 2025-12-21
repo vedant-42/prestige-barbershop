@@ -40,8 +40,8 @@ export default function SmokeOverlay({ onComplete }: SmokeOverlayProps) {
 
       this.opacity = 0;
       this.life = 0;
-      this.maxLife = 120 + Math.random() * 60;
-      this.scaleGrowth = 1.0005;
+      this.maxLife = 90 + Math.random() * 30;
+      this.scaleGrowth = 1.001;
     }
 
     update() {

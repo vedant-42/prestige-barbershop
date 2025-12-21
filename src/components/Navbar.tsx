@@ -1,17 +1,8 @@
 import { useState } from 'react';
-import { Home, ChevronDown, Menu, X } from 'lucide-react';
+import { Home, Menu, X } from 'lucide-react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 
-const services = [
-    { id: 'haircut', title: 'Haircut' },
-    { id: 'haircut-beard', title: 'Haircut & Beard' },
-    { id: 'lineup', title: 'Lineup' },
-    { id: 'lineup-beard', title: 'Lineup & Beard' },
-    { id: 'kids-haircut', title: 'Kids Haircut' },
-];
-
 export default function Navbar() {
-    const [showPortfolioDropdown, setShowPortfolioDropdown] = useState(false);
     const [showMobileMenu, setShowMobileMenu] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
@@ -81,31 +72,12 @@ export default function Navbar() {
                             Team
                         </button>
 
-                        {/* Portfolio Dropdown */}
-                        <div className="relative">
-                            <button
-                                onClick={() => setShowPortfolioDropdown(!showPortfolioDropdown)}
-                                className="flex items-center gap-1 px-3 md:px-4 py-2 text-sm font-medium text-gray-300 hover:text-[#d4af37] transition-colors uppercase tracking-wide"
-                            >
-                                Portfolio
-                                <ChevronDown className={`w-4 h-4 transition-transform ${showPortfolioDropdown ? 'rotate-180' : ''}`} />
-                            </button>
-
-                            {showPortfolioDropdown && (
-                                <div className="absolute right-0 mt-2 w-56 bg-black/95 backdrop-blur-md border border-[#d4af37]/20 rounded shadow-lg">
-                                    {services.map((service) => (
-                                        <Link
-                                            key={service.id}
-                                            to={`/portfolio/${service.id}`}
-                                            onClick={() => setShowPortfolioDropdown(false)}
-                                            className="block px-4 py-3 text-sm text-gray-300 hover:text-[#d4af37] hover:bg-white/5 transition-colors border-b border-[#d4af37]/10 last:border-b-0"
-                                        >
-                                            {service.title}
-                                        </Link>
-                                    ))}
-                                </div>
-                            )}
-                        </div>
+                        <Link
+                            to="/portfolio"
+                            className="px-3 md:px-4 py-2 text-sm font-medium text-gray-300 hover:text-[#d4af37] transition-colors uppercase tracking-wide"
+                        >
+                            Portfolio
+                        </Link>
                     </div>
 
                     {/* Hamburger Menu (visible on mobile/tablet) */}
@@ -143,22 +115,13 @@ export default function Navbar() {
                                 Team
                             </button>
 
-                            {/* Portfolio Section in Mobile */}
-                            <div className="border-t border-[#d4af37]/10 mt-2 pt-2">
-                                <div className="px-4 py-2 text-xs font-semibold text-[#d4af37] uppercase tracking-wider">
-                                    Portfolio
-                                </div>
-                                {services.map((service) => (
-                                    <Link
-                                        key={service.id}
-                                        to={`/portfolio/${service.id}`}
-                                        onClick={() => setShowMobileMenu(false)}
-                                        className="block px-4 py-3 pl-8 text-sm text-gray-300 hover:text-[#d4af37] hover:bg-white/5 transition-colors"
-                                    >
-                                        {service.title}
-                                    </Link>
-                                ))}
-                            </div>
+                            <Link
+                                to="/portfolio"
+                                onClick={() => setShowMobileMenu(false)}
+                                className="block w-full text-left px-4 py-3 text-sm font-medium text-gray-300 hover:text-[#d4af37] hover:bg-white/5 transition-colors uppercase tracking-wide"
+                            >
+                                Portfolio
+                            </Link>
                         </div>
                     </div>
                 )}

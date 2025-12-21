@@ -112,7 +112,7 @@ export default function ServicesSection() {
                     {services.map((service, index) => (
                         <Link
                             key={service.id}
-                            to={`/portfolio/${service.id}`}
+                            to={`/portfolio#${service.id}`}
                             className="w-[220px]"
                         >
                             <motion.div

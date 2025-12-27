@@ -41,10 +41,9 @@ export default function Navbar() {
         <nav className="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-md border-b border-[#d4af37]/20">
             <div className="max-w-7xl mx-auto px-4 md:px-8">
                 <div className="relative flex items-center justify-between h-20">
-                    {/* Left: Language Toggle */}
+                    {/* Left: Language Toggle (Desktop Only) */}
                     <div className="flex items-center z-20">
-                        {/* Desktop Visual Switch */}
-                        <div className="hidden md:flex items-center gap-3">
+                        <div className="hidden lg:flex items-center gap-3">
                             <span className="text-gray-300 text-sm uppercase tracking-wide font-medium">{t('nav.language')}</span>
                             <div className="flex bg-white/10 rounded-full p-1 border border-white/10 backdrop-blur-sm">
                                 <button
@@ -65,26 +64,6 @@ export default function Navbar() {
                                 >
                                     ESPAÑOL
                                 </button>
-                            </div>
-                        </div>
-
-                        {/* Mobile Dropdown */}
-                        <div className="md:hidden">
-                            <div className="relative">
-                                <select
-                                    value={language}
-                                    onChange={(e) => setLanguage(e.target.value as 'en' | 'es')}
-                                    className="appearance-none bg-black/50 border border-[#d4af37]/30 text-[#d4af37] text-sm font-bold uppercase py-1 px-3 pr-8 rounded focus:outline-none focus:border-[#d4af37] focus:ring-1 focus:ring-[#d4af37]"
-                                    aria-label="Select Language"
-                                >
-                                    <option value="en">EN</option>
-                                    <option value="es">ES</option>
-                                </select>
-                                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-[#d4af37]">
-                                    <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                        <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                                    </svg>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -161,6 +140,33 @@ export default function Navbar() {
                             >
                                 {t('nav.portfolio')}
                             </Link>
+
+                            {/* Mobile Language Toggle */}
+                            <div className="px-4 py-3 pb-4">
+                                <div className="flex items-center gap-3">
+                                    <span className="text-gray-300 text-sm uppercase tracking-wide font-medium">{t('nav.language')}</span>
+                                    <div className="flex bg-white/10 rounded-full p-1 border border-white/10 backdrop-blur-sm">
+                                        <button
+                                            onClick={() => setLanguage('en')}
+                                            className={`px-3 py-1 rounded-full text-xs font-medium transition-all duration-300 ${language === 'en'
+                                                ? 'bg-[#d4af37] text-black shadow-lg font-bold'
+                                                : 'text-gray-300 hover:text-[#d4af37]'
+                                                }`}
+                                        >
+                                            ENGLISH
+                                        </button>
+                                        <button
+                                            onClick={() => setLanguage('es')}
+                                            className={`px-3 py-1 rounded-full text-xs font-medium transition-all duration-300 ${language === 'es'
+                                                ? 'bg-[#d4af37] text-black shadow-lg font-bold'
+                                                : 'text-gray-300 hover:text-[#d4af37]'
+                                                }`}
+                                        >
+                                            ESPAÑOL
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 )}

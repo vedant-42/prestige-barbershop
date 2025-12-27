@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Calendar } from 'lucide-react';
 import FooterSection from '../components/FooterSection';
+import { useLanguage } from '../context/LanguageContext';
 
 // Flattened source data
 const rawImages = [
@@ -40,6 +41,7 @@ const rawImages = [
 ];
 
 export default function PortfolioPage() {
+    const { t } = useLanguage();
     const [shuffledImages, setShuffledImages] = useState<string[]>([]);
 
     useEffect(() => {
@@ -72,7 +74,7 @@ export default function PortfolioPage() {
                 <div className="relative z-10 flex flex-col items-center gap-12 px-4">
                     <div className="flex flex-col items-center w-fit max-w-full">
                         <h1 className="text-4xl md:text-6xl font-bold text-white mb-2 prestige-title tracking-widest text-center">
-                            OUR PORTFOLIO
+                            {t('portfolio.title')}
                         </h1>
                         <div className="w-full h-1 bg-[#d4af37] rounded-full" />
                     </div>
@@ -84,7 +86,7 @@ export default function PortfolioPage() {
                         className="inline-flex items-center gap-4 px-10 py-5 bg-gradient-to-r from-[#D4AF37] to-[#B4941F] text-white font-bold text-xl uppercase tracking-widest hover:scale-105 transition-all duration-300 rounded-full shadow-[0_0_20px_rgba(212,175,55,0.6)] border border-[#D4AF37]/30"
                     >
                         <Calendar size={24} />
-                        Book a Cut
+                        {t('portfolio.bookBtn')}
                     </a>
                 </div>
 
@@ -93,7 +95,7 @@ export default function PortfolioPage() {
                     className="absolute top-8 left-8 flex items-center gap-2 text-white/80 hover:text-[#d4af37] transition-colors duration-300 z-10"
                 >
                     <ArrowLeft size={20} />
-                    <span className="uppercase tracking-widest text-sm font-bold">Back to Services</span>
+                    <span className="uppercase tracking-widest text-sm font-bold">{t('portfolio.backToServices')}</span>
                 </Link>
             </div>
 

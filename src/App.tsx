@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate, Navigate } from 'react-router-dom';
+import { LanguageProvider } from './context/LanguageContext';
 import SmokeOverlay from './components/SmokeOverlay';
 import HeroSection from './components/HeroSection';
 import ServicesSection from './components/ServicesSection';
@@ -83,20 +84,22 @@ function App() {
   };
 
   return (
-    <Router>
-      <InitialHashCleaner />
-      <ScrollToTop />
-      <Navbar />
-      <div className="bg-black min-h-screen pt-20">
-        {showSmoke && <SmokeOverlay onComplete={handleSmokeComplete} />}
+    <LanguageProvider>
+      <Router>
+        <InitialHashCleaner />
+        <ScrollToTop />
+        <Navbar />
+        <div className="bg-black min-h-screen pt-20">
+          {showSmoke && <SmokeOverlay onComplete={handleSmokeComplete} />}
 
-        <Routes>
-          <Route path="/" element={<HomePage contentReady={contentReady} />} />
-          <Route path="/portfolio" element={<PortfolioPage />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
-      </div>
-    </Router>
+          <Routes>
+            <Route path="/" element={<HomePage contentReady={contentReady} />} />
+            <Route path="/portfolio" element={<PortfolioPage />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </div>
+      </Router>
+    </LanguageProvider>
   );
 }
 

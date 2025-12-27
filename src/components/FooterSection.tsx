@@ -1,7 +1,10 @@
 import { motion } from 'framer-motion';
 import { MapPin, Phone, Instagram } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function FooterSection() {
+    const { t } = useLanguage();
+
     return (
         <footer className="bg-[#111111] text-white border-t-2 border-[#d4af37] relative z-20">
             {/* Main Content Grid */}
@@ -34,11 +37,11 @@ export default function FooterSection() {
                     {/* Column 2: Hours */}
                     <div className="flex flex-col items-center text-center space-y-6">
                         <h3 className="text-xl font-bold text-[#d4af37] tracking-[0.2em] uppercase border-b border-[#d4af37]/30 pb-2">
-                            Hours
+                            {t('footer.hoursTitle')}
                         </h3>
                         <ul className="space-y-3 text-gray-300 font-light tracking-wide">
                             <li className="flex flex-col">
-                                <span className="font-medium text-white">Monday - Sunday</span>
+                                <span className="font-medium text-white">{t('footer.days')}</span>
                                 <span>9:00 AM - 7:00 PM</span>
                             </li>
                         </ul>
@@ -59,10 +62,10 @@ export default function FooterSection() {
                             whileTap={{ scale: 0.95 }}
                             className="w-full md:w-auto min-w-[250px] px-8 py-4 bg-gradient-to-r from-[#D4AF37] to-[#B4941F] text-white font-bold text-lg uppercase tracking-widest text-center rounded-full shadow-[0_0_15px_rgba(212,175,55,0.5)] border border-[#D4AF37]/30 transition-all duration-300"
                         >
-                            Book a Cut Now
+                            {t('footer.bookBtn')}
                         </motion.a>
                         <p className="text-gray-300 text-sm italic max-w-xs text-center md:text-right">
-                            Walk-ins welcome, but appointments are highly recommended.
+                            {t('footer.walkins')}
                         </p>
                     </div>
                 </div>
@@ -71,7 +74,7 @@ export default function FooterSection() {
             {/* Map Integration */}
             <div className="w-full h-[300px] md:h-[400px] grayscale hover:grayscale-0 transition-all duration-700 ease-in-out border-y border-[#d4af37]/20">
                 <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2946.567364663364!2d-71.05436692346766!3d42.39441693292446!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e370e2813583bd%3A0x627376092027201!2s2%20Malden%20St%2C%20Everett%2C%20MA%2002149!5e0!3m2!1sen!2sus!4v1716931200000!5m2!1sen!2sus"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2946.567364663364!2d-71.05436692346766!3d42.39441693292446!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e370e2813583bd%3A0x627376092027201!2s2%20Malden St%2C%20Everett%2C%20MA%2002149!5e0!3m2!1sen!2sus!4v1716931200000!5m2!1sen!2sus"
                     width="100%"
                     height="100%"
                     style={{ border: 0 }}
@@ -86,7 +89,7 @@ export default function FooterSection() {
             <div className="bg-black border-t border-[#d4af37]/20">
                 <div className="max-w-7xl mx-auto px-4 md:px-8 py-6 flex flex-col items-center gap-4">
                     <p className="text-gray-300 text-sm font-light tracking-wide text-center">
-                        &copy; {new Date().getFullYear()} Prestige Barbershop LLC. All Rights Reserved.
+                        &copy; {new Date().getFullYear()} Prestige Barbershop LLC. {t('footer.rights')}
                     </p>
 
                     <div className="flex items-center gap-6">

@@ -2,51 +2,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { Scissors, PenTool, User, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useRef } from 'react';
-
-const services = [
-    {
-        id: 'haircut',
-        title: 'Haircut',
-        price: '$35',
-        icon: Scissors,
-        description: 'Precision cut tailored to your style.',
-        image: '/services/haircut-icon.png'
-    },
-    {
-        id: 'haircut-beard',
-        title: 'Haircut & Beard',
-        price: '$45',
-        icon: Sparkles, // Using Sparkles as a placeholder for combo
-        description: 'Complete grooming package.',
-        image: '/services/haircut-beard-icon.png'
-    },
-    {
-        id: 'kids-haircut',
-        title: 'Kids Haircut',
-        price: '$25',
-        icon: User,
-        description: 'Style for the young ones.',
-        image: '/services/kids-haircut-icon.png'
-    },
-    {
-        id: 'lineup',
-        title: 'Lineup',
-        price: '$20',
-        icon: PenTool, // Placeholder for straight razor
-        description: 'Sharp, clean edges.',
-        image: '/services/lineup-icon.png'
-    },
-    {
-        id: 'lineup-beard',
-        title: 'Lineup & Beard',
-        price: '$30',
-        icon: PenTool,
-        description: 'Detailed beard sculpting.',
-        image: '/services/lineup-beard-icon.png'
-    },
-];
-
-
+import { useLanguage } from '../context/LanguageContext';
 
 // Improved Responsive Hexagon Pattern
 function ResponsiveHexagonPattern() {
@@ -90,6 +46,51 @@ function ResponsiveHexagonPattern() {
 }
 
 export default function ServicesSection() {
+    const { t } = useLanguage();
+
+    const services = [
+        {
+            id: 'haircut',
+            title: t('services.items.haircut.title'),
+            price: '$35',
+            icon: Scissors,
+            description: t('services.items.haircut.desc'),
+            image: '/services/haircut-icon.png'
+        },
+        {
+            id: 'haircut-beard',
+            title: t('services.items.haircutBeard.title'),
+            price: '$45',
+            icon: Sparkles, // Using Sparkles as a placeholder for combo
+            description: t('services.items.haircutBeard.desc'),
+            image: '/services/haircut-beard-icon.png'
+        },
+        {
+            id: 'kids-haircut',
+            title: t('services.items.kidsHaircut.title'),
+            price: '$25',
+            icon: User,
+            description: t('services.items.kidsHaircut.desc'),
+            image: '/services/kids-haircut-icon.png'
+        },
+        {
+            id: 'lineup',
+            title: t('services.items.lineup.title'),
+            price: '$20',
+            icon: PenTool, // Placeholder for straight razor
+            description: t('services.items.lineup.desc'),
+            image: '/services/lineup-icon.png'
+        },
+        {
+            id: 'lineup-beard',
+            title: t('services.items.lineupBeard.title'),
+            price: '$30',
+            icon: PenTool,
+            description: t('services.items.lineupBeard.desc'),
+            image: '/services/lineup-beard-icon.png'
+        },
+    ];
+
     return (
         <section id="services" className="relative py-24 px-4 md:px-8 bg-[#0a0a0a] overflow-hidden scroll-mt-20 border-t-2 border-[#d4af37]">
             <ResponsiveHexagonPattern />
@@ -103,7 +104,7 @@ export default function ServicesSection() {
                     className="text-center mb-16"
                 >
                     <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 prestige-title tracking-widest">
-                        OUR SERVICES
+                        {t('services.title')}
                     </h2>
                     <div className="w-24 h-1 bg-[#d4af37] mx-auto rounded-full" />
                 </motion.div>
@@ -143,7 +144,7 @@ export default function ServicesSection() {
 
                                     <div className="opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
                                         <span className="text-xs font-bold text-white uppercase tracking-[0.2em] border-b border-[#d4af37] pb-1">
-                                            View Portfolio
+                                            {t('services.viewPortfolio')}
                                         </span>
                                     </div>
                                 </div>

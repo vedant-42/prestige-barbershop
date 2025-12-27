@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
 import { User, Scissors } from 'lucide-react';
 import { useEffect, useRef, useMemo } from 'react';
+import { useLanguage } from '../context/LanguageContext';
+import { Instagram, Star, Calendar } from 'lucide-react';
 
 // Custom Icons
 const StraightRazor = ({ className }: { className?: string }) => (
@@ -107,41 +109,42 @@ const team = [
     {
         id: 'deefades',
         name: 'DeeFades',
-        role: 'Master Barber | Owner',
+        roleKey: 'masterOwner' as const,
         image: '/team/deefades.png',
         bookingUrl: 'https://booksy.com/en-us/144068_deefades_barber-shop_22262_everett#ba_s=sh_1'
     },
     {
         id: 'rafa',
         name: 'Rafa',
-        role: 'Master Barber | Owner',
+        roleKey: 'masterOwner' as const,
         image: '/team/rafa.jpg',
         bookingUrl: 'https://booksy.com/en-us/1185083_rafa-the-barber_barber-shop_22262_everett'
     },
     {
         id: 'clos',
         name: 'C-Los',
-        role: 'Master Barber',
+        roleKey: 'master' as const,
         image: '/team/clos.png',
         bookingUrl: 'https://booksy.com/en-us/537133_c-los-da-barber_barber-shop_22262_everett'
     },
     {
         id: 'lians',
         name: 'Lians',
-        role: 'Master Barber',
+        roleKey: 'master' as const,
         image: '/team/lians.jpg',
         bookingUrl: 'https://app.thecut.co/barbers/dacutzplugguzz'
     },
     {
         id: 'sergio',
         name: 'Sergio',
-        role: 'Master Barber',
+        roleKey: 'master' as const,
         image: null, // Placeholder
         bookingUrl: 'https://booksy.com/en-us/223554_sergio-the-barber_barber-shop_22262_everett'
     }
 ];
 
 export default function TeamSection() {
+    const { t } = useLanguage();
     // Split team into two groups for layout:
     // Row 1: First 2 members (Owners)
     // Row 2: Remaining members
@@ -183,7 +186,7 @@ export default function TeamSection() {
                 {member.name}
             </h3>
             <p className="text-[#d4af37] font-medium tracking-widest text-sm uppercase mb-6">
-                {member.role}
+                {t(`team.roles.${member.roleKey}`)}
             </p>
 
             {/* Booking Button */}
@@ -202,7 +205,7 @@ export default function TeamSection() {
                 className="inline-block px-8 py-3 text-sm font-bold tracking-[0.2em] text-white uppercase transition-all duration-300 bg-gradient-to-r from-[#D4AF37] to-[#B4941F] rounded-full shadow-[0_0_15px_rgba(212,175,55,0.5)] border border-[#D4AF37]/30"
                 style={{ fontFamily: "'Cinzel', serif" }}
             >
-                Book with {member.name}
+                {t('team.bookWith')} {member.name}
             </motion.a>
         </motion.div>
     );
@@ -219,7 +222,7 @@ export default function TeamSection() {
                     className="text-center mb-20"
                 >
                     <h2 className="text-4xl md:text-5xl font-bold text-black mb-4 prestige-title tracking-widest">
-                        THE BARBERS
+                        {t('team.title')}
                     </h2>
                     <div className="w-24 h-1 bg-[#d4af37] mx-auto rounded-full" />
                 </motion.div>

@@ -1,7 +1,9 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function HeroSection() {
+  const { t } = useLanguage();
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -73,7 +75,7 @@ export default function HeroSection() {
             className="inline-block px-6 py-3 md:px-10 md:py-4 mt-6 md:mt-8 text-sm md:text-xl font-bold tracking-[0.2em] text-white uppercase transition-all duration-300 bg-gradient-to-r from-[#D4AF37] to-[#B4941F] rounded-full shadow-[0_0_15px_rgba(212,175,55,0.5)] border border-[#D4AF37]/30 backdrop-blur-sm"
             style={{ fontFamily: "'Cinzel', serif" }}
           >
-            Book a Cut Now
+            {t('hero.bookBtn')}
           </motion.a>
         </motion.div>
       </motion.div>

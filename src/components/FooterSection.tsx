@@ -21,7 +21,7 @@ export default function FooterSection() {
                                 <div className="p-2 rounded-full border border-[#d4af37]/30 group-hover:border-[#d4af37] transition-colors">
                                     <MapPin className="w-5 h-5 text-[#d4af37]" />
                                 </div>
-                                <span className="text-gray-300 font-light tracking-wide">2 Malden St, Everett, 02149</span>
+                                <span className="text-gray-300 font-light tracking-wide">2 Malden St, Everett, MA 02149</span>
                             </div>
                             <div className="flex items-center justify-center md:justify-start gap-3 group">
                                 <div className="p-2 rounded-full border border-[#d4af37]/30 group-hover:border-[#d4af37] transition-colors">

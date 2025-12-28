@@ -17,7 +17,7 @@ export const translations = {
             items: {
                 haircut: {
                     title: 'Haircut',
-                    desc: 'Precision cut tailored to your style.',
+                    desc: 'Precision cut tailored to your style. Best fades in Everett.',
                 },
                 haircutBeard: {
                     title: 'Haircut & Beard',
@@ -55,7 +55,7 @@ export const translations = {
             days: 'Monday - Sunday',
             bookBtn: 'Book a Cut Now',
             walkins: 'Walk-ins welcome, but appointments are highly recommended.',
-            rights: 'All Rights Reserved.',
+            rights: 'All Rights Reserved. Proudly serving Everett, Malden, and Revere.',
         },
     },
     es: {

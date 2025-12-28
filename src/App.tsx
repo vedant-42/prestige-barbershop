@@ -8,6 +8,7 @@ import PortfolioPage from './pages/PortfolioPage';
 import TeamSection from './components/TeamSection';
 import FooterSection from './components/FooterSection';
 import Navbar from './components/Navbar';
+import SEO from './components/SEO';
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
@@ -86,6 +87,11 @@ function App() {
   return (
     <LanguageProvider>
       <Router>
+        <SEO
+          title="Home - Premium Men's Grooming"
+          description="Prestige Barbershop in Everett, MA offers premium men's haircuts, fades, beard trims, and hot towel shaves. Minutes from Malden. Book your appointment today."
+          keywords="barbershop Everett, barbershop Malden, best barbershop MA, mens haircuts, fades, beard trim, Prestige Barbershop"
+        />
         <InitialHashCleaner />
         <ScrollToTop />
         <Navbar />

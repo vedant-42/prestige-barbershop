@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { ArrowLeft, Calendar } from 'lucide-react';
 import FooterSection from '../components/FooterSection';
 import { useLanguage } from '../context/LanguageContext';
+import SEO from '../components/SEO';
 
 // Flattened source data
 const rawImages = [
@@ -65,6 +66,11 @@ export default function PortfolioPage() {
             transition={{ duration: 0.5 }}
             className="min-h-screen bg-black text-white"
         >
+            <SEO
+                title="Portfolio - Haircuts & Styles"
+                description="View our gallery of modern mens haircuts, fades, beard trims, and designs performed by Prestige Barbershop in Everett, MA."
+                keywords="haircut portfolio, fades gallery, beard styles, best barber photos Everett"
+            />
             {/* Hero Banner */}
             <div className="relative h-[50vh] w-full overflow-hidden flex flex-col items-center justify-center">
                 <div className="absolute inset-0 bg-[#1a1a1a]">
@@ -115,7 +121,7 @@ export default function PortfolioPage() {
                             >
                                 <img
                                     src={image}
-                                    alt={`Portfolio example ${index + 1}`}
+                                    alt={`Fade haircut by Prestige Barbershop Everett - style ${index + 1}`}
                                     className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                                 />
                                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Analytics } from "@vercel/analytics/react";
 import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate, Navigate } from 'react-router-dom';
 import { LanguageProvider } from './context/LanguageContext';
 import SmokeOverlay from './components/SmokeOverlay';
@@ -105,6 +106,7 @@ function App() {
           </Routes>
         </div>
       </Router>
+      <Analytics />
     </LanguageProvider>
   );
 }

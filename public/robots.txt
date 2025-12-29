@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://prestigebarbershopllc.com/sitemap.xml

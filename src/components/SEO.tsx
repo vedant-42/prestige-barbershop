@@ -17,8 +17,7 @@ export default function SEO({
     type = 'website',
     image = '/image.png' // Default to the hero image if none provided
 }: SEOProps) {
-    const siteTitle = 'Prestige Barbershop';
-    const fullTitle = `${title} | ${siteTitle}`;
+    const fullTitle = `${title}`;
 
     // Ensure absolute URL for OG image if possible, but relative works for now if domain unknown
     // In production, this should ideally be a full URL

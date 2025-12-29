@@ -88,9 +88,9 @@ function App() {
     <LanguageProvider>
       <Router>
         <SEO
-          title="Home - Premium Men's Grooming"
-          description="Prestige Barbershop in Everett, MA offers premium men's haircuts, fades, beard trims, and hot towel shaves. Minutes from Malden. Book your appointment today."
-          keywords="barbershop Everett, barbershop Malden, best barbershop MA, mens haircuts, fades, beard trim, Prestige Barbershop"
+          title="Home - Prestige Barbershop"
+          description="Prestige Barbershop in Everett, MA offers fades, lineups, beard trims, and more. Book an appointment today."
+          keywords="Prestige Barbershop, barbershop Everett, best barbershop Boston, mens haircuts"
         />
         <InitialHashCleaner />
         <ScrollToTop />

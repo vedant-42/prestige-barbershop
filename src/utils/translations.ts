@@ -17,7 +17,7 @@ export const translations = {
             items: {
                 haircut: {
                     title: 'Haircut',
-                    desc: 'Precision cut tailored to your style. Best fades in Everett.',
+                    desc: 'Precision cut tailored to your style.',
                 },
                 haircutBeard: {
                     title: 'Haircut & Beard',

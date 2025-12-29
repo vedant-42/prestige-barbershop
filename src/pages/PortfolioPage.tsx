@@ -67,8 +67,8 @@ export default function PortfolioPage() {
             className="min-h-screen bg-black text-white"
         >
             <SEO
-                title="Portfolio - Haircuts & Styles"
-                description="View our gallery of modern mens haircuts, fades, beard trims, and designs performed by Prestige Barbershop in Everett, MA."
+                title="Portfolio - Prestige Barbershop"
+                description="View our gallery of haircuts, including fades, lineups,beard trims, and designs performed by the team at Prestige Barbershop in Everett, MA."
                 keywords="haircut portfolio, fades gallery, beard styles, best barber photos Everett"
             />
             {/* Hero Banner */}

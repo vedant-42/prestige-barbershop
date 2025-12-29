@@ -55,7 +55,7 @@ export const translations = {
             days: 'Monday - Sunday',
             bookBtn: 'Book a Cut Now',
             walkins: 'Walk-ins welcome, but appointments are highly recommended.',
-            rights: 'All Rights Reserved. Proudly serving Everett, Malden, and Revere.',
+            rights: 'All Rights Reserved.',
         },
     },
     es: {

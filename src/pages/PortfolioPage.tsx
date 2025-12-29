@@ -68,8 +68,8 @@ export default function PortfolioPage() {
         >
             <SEO
                 title="Portfolio - Prestige Barbershop"
-                description="View our gallery of haircuts, including fades, lineups,beard trims, and designs performed by the team at Prestige Barbershop in Everett, MA."
-                keywords="haircut portfolio, fades gallery, beard styles, best barber photos Everett"
+                description="View our gallery of haircuts, including fades, lineups, and beard trims performed by the team at Prestige Barbershop in Everett, MA."
+                keywords="haircut portfolio, best barber photos Everett, Prestige Barbershop, best fades Boston"
             />
             {/* Hero Banner */}
             <div className="relative h-[50vh] w-full overflow-hidden flex flex-col items-center justify-center">
@@ -121,7 +121,7 @@ export default function PortfolioPage() {
                             >
                                 <img
                                     src={image}
-                                    alt={`Fade haircut by Prestige Barbershop Everett - style ${index + 1}`}
+                                    alt={`Haircut by Prestige Barbershop, Everett MA - style ${index + 1}`}
                                     className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                                 />
                                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />

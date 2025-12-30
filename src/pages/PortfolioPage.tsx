@@ -70,6 +70,7 @@ export default function PortfolioPage() {
                 title="Portfolio - Prestige Barbershop"
                 description="View our gallery of haircuts, including fades, lineups, and beard trims performed by the team at Prestige Barbershop in Everett, MA."
                 keywords="haircut portfolio, best barber photos Everett, Prestige Barbershop, best fades Boston"
+                canonical="https://prestigebarbershopllc.com/portfolio"
             />
             {/* Hero Banner */}
             <div className="relative h-[50vh] w-full overflow-hidden flex flex-col items-center justify-center">

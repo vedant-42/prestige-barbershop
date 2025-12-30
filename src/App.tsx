@@ -91,7 +91,8 @@ function App() {
         <SEO
           title="Home - Prestige Barbershop"
           description="Prestige Barbershop in Everett, MA offers fades, lineups, beard trims, and more. Book an appointment today."
-          keywords="Prestige Barbershop, barbershop Everett, best barbershop Boston, mens haircuts"
+          keywords="barbershop Everett, best barbershop MA, mens haircuts, fades, beard trim, Prestige Barbershop"
+          canonical="https://prestigebarbershopllc.com/"
         />
         <InitialHashCleaner />
         <ScrollToTop />

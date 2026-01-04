@@ -19,9 +19,10 @@ export default function SEO({
 }: SEOProps) {
     const fullTitle = `${title}`;
 
-    // Ensure absolute URL for OG image if possible, but relative works for now if domain unknown
+    // Ensure absolute URL for OG image if possible
     // In production, this should ideally be a full URL
-    const metaImage = image.startsWith('http') ? image : `${window.location.origin}${image}`;
+    const domain = 'https://prestigebarbershopllc.com';
+    const metaImage = image.startsWith('http') ? image : `${domain}${image}`;
 
     return (
         <Helmet>

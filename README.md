@@ -1,6 +1,8 @@
 # Prestige Barbershop
 
-A modern website built for a local barbershop. Features a production-ready frontend architecture focused on SEO, performance, and user experience.
+A modern website built for a local barbershop, featuring a production-ready frontend architecture focused on SEO, performance, and user experience.
+
+This repo is public because all business logic is handled by each respective barber's booking service of choice.
 
 ## 🚀 Live Site:
 

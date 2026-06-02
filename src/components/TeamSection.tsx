@@ -128,17 +128,10 @@ const team = [
         bookingUrl: 'https://booksy.com/en-us/537133_c-los-da-barber_barber-shop_22262_everett'
     },
     {
-        id: 'lians',
-        name: 'Lians',
-        roleKey: 'master' as const,
-        image: '/team/lians.jpg',
-        bookingUrl: 'https://app.thecut.co/barbers/dacutzplugguzz'
-    },
-    {
         id: 'sergio',
         name: 'Sergio',
         roleKey: 'master' as const,
-        image: null, // Placeholder
+        image: 'team/sergio.png', // Placeholder
         bookingUrl: 'https://booksy.com/en-us/223554_sergio-the-barber_barber-shop_22262_everett'
     }
 ];

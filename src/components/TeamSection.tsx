@@ -110,7 +110,7 @@ const team = [
         id: 'deefades',
         name: 'DeeFades',
         roleKey: 'masterOwner' as const,
-        image: '/team/deefades.png',
+        image: '/team/deefades.jpeg',
         bookingUrl: 'https://booksy.com/en-us/144068_deefades_barber-shop_22262_everett#ba_s=sh_1'
     },
     {
@@ -131,7 +131,7 @@ const team = [
         id: 'sergio',
         name: 'Sergio',
         roleKey: 'master' as const,
-        image: 'team/sergio.png', // Placeholder
+        image: '/team/sergio.png',
         bookingUrl: 'https://booksy.com/en-us/223554_sergio-the-barber_barber-shop_22262_everett'
     }
 ];

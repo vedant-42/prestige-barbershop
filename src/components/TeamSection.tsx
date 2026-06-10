@@ -55,6 +55,7 @@ function TeamBackground() {
                 speed: 0.2 + Math.random() * 0.8,
                 direction: Math.random() > 0.5 ? 1 : -1,
                 rotation: Math.random() * 360,
+                color: (['var(--flag-red)', 'var(--flag-blue)'] as const)[Math.floor(Math.random() * 2)],
             });
         }
         return items;
@@ -86,14 +87,14 @@ function TeamBackground() {
             {iconData.map((item, index) => (
                 <div
                     key={item.id}
-                    // Using text-gray-400 for slightly darker visibility
-                    // Hidden on mobile for every other item to reduce clutter
-                    className={`absolute text-gray-400 will-change-transform ${index % 2 !== 0 ? 'hidden md:block' : ''}`}
+                    className={`absolute will-change-transform ${index % 2 !== 0 ? 'hidden md:block' : ''}`}
                     style={{
                         top: `${item.top}%`,
                         left: `${item.left}%`,
                         width: item.size,
                         height: item.size,
+                        color: item.color,
+                        opacity: 0.18,
                         // Rotation logic: Initial rotation + (ScrollY * Speed * Direction)
                         transform: `rotate(calc(${item.rotation}deg + (var(--scrollY) * ${item.speed} * ${item.direction} * 0.5deg)))`,
                     } as React.CSSProperties}

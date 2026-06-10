@@ -45,6 +45,51 @@ function ResponsiveHexagonPattern() {
     );
 }
 
+function BarberPole() {
+    const { scrollY } = useScroll();
+    const bgPos = useTransform(scrollY, value => `0px ${value * 0.5}px`);
+
+    return (
+        <div className="flex max-[350px]:hidden flex-col items-center flex-shrink-0 -mt-4 opacity-90" style={{ width: 28 }}>
+
+            {/* Gold orb */}
+            <div style={{
+                width: 18, height: 18,
+                borderRadius: '50%',
+                background: 'radial-gradient(circle at 35% 30%, #fff5c0, #d4af37 45%, #8a6800)',
+                boxShadow: '0 2px 6px rgba(212,175,55,0.5)',
+                flexShrink: 0,
+                marginBottom: 1,
+            }} />
+
+            {/* Gold top cap */}
+            <div style={{
+                width: 28, height: 10,
+                background: 'linear-gradient(to bottom, #f8e896, #d4af37, #a07800)',
+                borderRadius: '3px 3px 0 0',
+                flexShrink: 0,
+            }} />
+
+            {/* Stripe body */}
+            <div style={{ 
+                width: 28, height: 50, overflow: 'hidden',
+                boxShadow: 'inset 8px 0 8px -4px rgba(0,0,0,0.8), inset -8px 0 8px -4px rgba(0,0,0,0.8)'
+            }}>
+                <motion.div className="barber-pole-stripes" style={{ width: '100%', height: '100%', backgroundPosition: bgPos }} />
+            </div>
+
+            {/* Gold bottom cap */}
+            <div style={{
+                width: 28, height: 10,
+                background: 'linear-gradient(to bottom, #a07800, #d4af37, #f8e896)',
+                borderRadius: '0 0 3px 3px',
+                flexShrink: 0,
+            }} />
+
+        </div>
+    );
+}
+
 export default function ServicesSection() {
     const { t } = useLanguage();
 
@@ -101,12 +146,18 @@ export default function ServicesSection() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8 }}
-                    className="text-center mb-16"
+                    className="flex items-center justify-center gap-3 min-[400px]:gap-6 md:gap-12 mb-16"
                 >
-                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 prestige-title tracking-widest">
-                        {t('services.title')}
-                    </h2>
-                    <div className="w-24 h-1 bg-[#d4af37] mx-auto rounded-full" />
+                    {/* <BarberPole /> */}
+
+                    <div className="text-center">
+                        <h2 className="text-2xl min-[400px]:text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 prestige-title tracking-widest">
+                            {t('services.title')}
+                        </h2>
+                        <div className="w-24 h-1 bg-[#d4af37] mx-auto rounded-full" />
+                    </div>
+
+                    {/* <BarberPole /> */}
                 </motion.div>
 
                 <div className="flex flex-wrap justify-center gap-6">

@@ -41,9 +41,11 @@ export default function Navbar() {
         <nav className="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-md border-b border-[#d4af37]/20">
             <div className="max-w-7xl mx-auto px-4 md:px-8">
                 <div className="relative flex items-center justify-between h-20">
-                    {/* Left: Language Toggle (Desktop Only) */}
+                    {/* Left: Language Toggle */}
                     <div className="flex items-center z-20">
-                        <div className="hidden lg:flex items-center gap-3">
+
+                        {/* Full toggle — desktop only (≥ xl) */}
+                        <div className="hidden xl:flex items-center gap-3">
                             <span className="text-gray-300 text-sm uppercase tracking-wide font-medium">{t('nav.language')}</span>
                             <div className="flex bg-white/10 rounded-full p-1 border border-white/10 backdrop-blur-sm">
                                 <button
@@ -66,17 +68,63 @@ export default function Navbar() {
                                 </button>
                             </div>
                         </div>
+
+                        {/* Compact EN/ES pill — hamburger mode, visible only when menu is closed */}
+                        {!showMobileMenu && (
+                            <div className="hidden sm:flex xl:hidden bg-white/10 rounded-full p-1 border border-white/10 backdrop-blur-sm">
+                                <button
+                                    onClick={() => setLanguage('en')}
+                                    className={`px-2 py-1 rounded-full text-xs font-medium transition-all duration-300 ${language === 'en'
+                                        ? 'bg-[#d4af37] text-black shadow-lg font-bold'
+                                        : 'text-gray-300 hover:text-[#d4af37]'
+                                        }`}
+                                >
+                                    EN
+                                </button>
+                                <button
+                                    onClick={() => setLanguage('es')}
+                                    className={`px-2 py-1 rounded-full text-xs font-medium transition-all duration-300 ${language === 'es'
+                                        ? 'bg-[#d4af37] text-black shadow-lg font-bold'
+                                        : 'text-gray-300 hover:text-[#d4af37]'
+                                        }`}
+                                >
+                                    ES
+                                </button>
+                            </div>
+                        )}
+
                     </div>
 
                     {/* Center: Brand Name - Clickable Home Link */}
-                    <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 cursor-pointer group" onClick={handleHomeClick}>
+                    <div
+                        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 cursor-pointer group flex items-center gap-3"
+                        onClick={handleHomeClick}
+                    >
+                        {/* Left parallelogram stripe — bottom edge leans right toward text */}
+                        <div style={{
+                            width: '52px',
+                            height: '14px',
+                            background: 'linear-gradient(to bottom, var(--flag-red) 0% 33%, var(--flag-white) 33% 66%, var(--flag-blue) 66% 100%)',
+                            clipPath: 'polygon(0% 0%, 80% 0%, 100% 100%, 20% 100%)',
+                            opacity: 0.92,
+                        }} />
+
                         <h1 className="text-lg md:text-xl font-bold font-serif tracking-wider text-white whitespace-nowrap transition-transform duration-300 group-hover:scale-105">
                             PRESTIGE <span className="text-[#d4af37] transition-colors duration-300 group-hover:text-[#F4CF57]">BARBERSHOP</span>
                         </h1>
+
+                        {/* Right parallelogram stripe — bottom edge leans left toward text */}
+                        <div style={{
+                            width: '52px',
+                            height: '14px',
+                            background: 'linear-gradient(to bottom, var(--flag-red) 0% 33%, var(--flag-white) 33% 66%, var(--flag-blue) 66% 100%)',
+                            clipPath: 'polygon(20% 0%, 100% 0%, 80% 100%, 0% 100%)',
+                            opacity: 0.92,
+                        }} />
                     </div>
 
                     {/* Right: Desktop Navigation (hidden on mobile/tablet) */}
-                    <div className="hidden lg:flex items-center gap-4 z-10">
+                    <div className="hidden xl:flex items-center gap-4 z-10">
                         <button
                             onClick={() => scrollToSection('services')}
                             className="px-3 md:px-4 py-2 text-sm font-medium text-gray-300 hover:text-[#d4af37] transition-colors uppercase tracking-wide"
@@ -99,7 +147,7 @@ export default function Navbar() {
                     </div>
 
                     {/* Hamburger Menu (visible on mobile/tablet) */}
-                    <div className="lg:hidden flex items-center z-10">
+                    <div className="xl:hidden flex items-center z-10">
                         <button
                             onClick={() => setShowMobileMenu(!showMobileMenu)}
                             className="text-[#d4af37] hover:text-white transition-colors p-2 hover:bg-white/5 rounded"
@@ -112,7 +160,7 @@ export default function Navbar() {
 
                 {/* Mobile Menu Dropdown */}
                 {showMobileMenu && (
-                    <div className="lg:hidden border-t border-[#d4af37]/20 bg-black/95 backdrop-blur-md">
+                    <div className="xl:hidden border-t border-[#d4af37]/20 bg-black/95 backdrop-blur-md">
                         <div className="py-2">
                             <button
                                 onClick={() => {

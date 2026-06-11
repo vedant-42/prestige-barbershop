@@ -134,6 +134,13 @@ const team = [
         roleKey: 'master' as const,
         image: '/team/sergio.png',
         bookingUrl: 'https://booksy.com/en-us/223554_sergio-the-barber_barber-shop_22262_everett'
+    },
+    {
+        id: 'mikey',
+        name: 'Mikey',
+        roleKey: 'master' as const,
+        image: '/team/mikey.jpeg',
+        bookingUrl: 'https://booksy.com/en-us/dl/show-business/982745?utm_medium=c2c_referral'
     }
 ];
 

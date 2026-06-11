@@ -64,8 +64,8 @@ function HomePage({ contentReady }: { contentReady: boolean }) {
       {contentReady && (
         <main className="smooth-scroll">
           <HeroSection />
-          <ServicesSection />
           <TeamSection />
+          <ServicesSection />
           <FooterSection />
         </main>
       )}

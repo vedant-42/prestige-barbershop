@@ -173,17 +173,17 @@ export default function ServicesSection() {
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.5, delay: index * 0.1 }}
                                 whileHover={{ y: -10 }}
-                                className="group relative h-[400px] bg-[#1a1a1a] border border-white/20 hover:border-[#d4af37] transition-colors duration-300 overflow-hidden rounded-sm shadow-[0_0_15px_rgba(255,255,255,0.05)] hover:shadow-[#d4af37]/20"
+                                className="group relative h-[400px] bg-[#1a1a1a] border border-[#d4af37] md:border-white/20 md:hover:border-[#d4af37] transition-colors duration-300 overflow-hidden rounded-sm shadow-[#d4af37]/20 md:shadow-[0_0_15px_rgba(255,255,255,0.05)] md:hover:shadow-[#d4af37]/20"
                             >
                                 {/* Image Area */}
-                                <div className="h-[65%] relative overflow-hidden group-hover:scale-105 transition-transform duration-500">
+                                <div className="h-[65%] relative overflow-hidden scale-105 md:scale-100 md:group-hover:scale-105 transition-transform duration-500">
                                     <img
                                         src={service.image}
                                         alt={service.title}
                                         className="absolute inset-0 w-full h-full object-contain p-4"
                                     />
                                     {/* Dark Overlay for text contrast if needed, or just style */}
-                                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-300" />
+                                    <div className="absolute inset-0 bg-black/0 md:bg-black/20 md:group-hover:bg-black/0 transition-colors duration-300" />
                                 </div>
 
                                 {/* Content */}
@@ -193,7 +193,7 @@ export default function ServicesSection() {
                                     </h3>
                                     <p className="text-[#d4af37] font-bold text-lg mb-4">{service.price}</p>
 
-                                    <div className="opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                                    <div className="opacity-100 translate-y-0 md:opacity-0 md:group-hover:opacity-100 transform md:translate-y-4 md:group-hover:translate-y-0 transition-all duration-300">
                                         <span className="text-xs font-bold text-white uppercase tracking-[0.2em] border-b border-[#d4af37] pb-1">
                                             {t('services.viewPortfolio')}
                                         </span>

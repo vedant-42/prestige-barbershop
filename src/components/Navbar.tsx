@@ -110,7 +110,7 @@ export default function Navbar() {
 
                         {/* Compact EN/ES pill — hamburger mode, visible only when menu is closed */}
                         {!showMobileMenu && (
-                            <div className="flex lg:hidden bg-white rounded-full p-1 shadow-sm scale-50 min-[400px]:scale-75 sm:scale-100 origin-left transition-transform">
+                            <div className="flex lg:hidden bg-white rounded-full p-1 shadow-sm scale-75 min-[400px]:scale-85 sm:scale-100 origin-left transition-transform">
                                 <button
                                     onClick={() => setLanguage('en')}
                                     className={`px-2 py-1 rounded-full text-xs font-medium transition-all duration-300 ${language === 'en'

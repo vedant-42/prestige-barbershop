@@ -165,7 +165,7 @@ export default function ServicesSection() {
                         <Link
                             key={service.id}
                             to={`/portfolio#${service.id}`}
-                            className="w-[220px]"
+                            className="w-[230px]"
                         >
                             <motion.div
                                 initial={{ opacity: 0, y: 30 }}

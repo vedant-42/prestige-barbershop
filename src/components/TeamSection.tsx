@@ -186,8 +186,16 @@ export default function TeamSection() {
             <h3 className="text-2xl font-bold text-black uppercase tracking-wider mb-2 font-serif">
                 {member.name}
             </h3>
-            <p className="text-[#d4af37] font-medium tracking-widest text-sm uppercase mb-6">
-                {t(`team.roles.${member.roleKey}`)}
+            <p className="font-medium tracking-widest text-sm uppercase mb-6">
+                {t(`team.roles.${member.roleKey}`).split(' | ').length === 2 ? (
+                    <>
+                        <span className="text-[var(--flag-blue)]">{t(`team.roles.${member.roleKey}`).split(' | ')[0]}</span>
+                        <span className="text-[#d4af37]"> | </span>
+                        <span className="text-[var(--flag-red)]">{t(`team.roles.${member.roleKey}`).split(' | ')[1]}</span>
+                    </>
+                ) : (
+                    <span className="text-[var(--flag-blue)]">{t(`team.roles.${member.roleKey}`)}</span>
+                )}
             </p>
 
             {/* Booking Button */}
